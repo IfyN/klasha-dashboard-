@@ -1,4 +1,32 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+
+export const StyledNavItem = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  padding-bottom: 18px;
+  color: #0a0a0a;
+  text-decoration: none;
+
+  &.active {
+    text-decoration: underline;
+    color: #ef2c5a;
+
+    path,
+    rect {
+      stroke: #ef2c5a;
+    }
+  }
+
+  .nav-text {
+    display: none;
+    @media (min-width: 768px) {
+      display: block;
+      padding-left: 13px;
+      font-size: 14px;
+    }
+  }
+`;
 
 export const StyledSidebar = styled.div`
   background-color: #FFFBF7;
@@ -6,28 +34,18 @@ export const StyledSidebar = styled.div`
   grid-auto-flow: column;
 
   .klasha-section {
-    position: relative;
-    margin: 40px 50px 0;
+    padding: 20px 10px;
+    @media(min-width: 768px) {
+      padding: 40px 50px;
+    }
   }
 
-    .nav-items{
-      display: inline-block;
-      padding-bottom: 18px;
+  .logo {
+    display: none;
+    @media(min-width: 768px) {
+      display: block;
     }
-    
-    .nav-text{
-    
-    }
-
-    .nav-menu{
-      display: inline-block;
-    }
-    .nav-text{
-    bottom: 5px;
-    position: relative;
-    padding-left: 13px;
-    }
-
+  }
    
     .sidebar--burger{
       position: absolute;
@@ -41,44 +59,43 @@ export const StyledSidebar = styled.div`
       margin-top: 10%;
     }
 
-
-    h1 {
-      position: relative;
-      font-size: 6em;
-    }
-
-    h3 {
-      position: relative;
-      font-size: 2em;
-      font-weight: ;
-    }
-
     h4 {
-      position: relative;
-      font-weight: light;
-      color: #8D8D8D;
+      display: none;
+
+      @media(min-width: 768px) {
+        display: block;
+        font-weight: light;
+        color: #8D8D8D;
+        font-size: 14px;
+      }
     }
 
-    .sidebar__image-cloud {
-      display: flex;
-      position: relative;
-      width: 45%;
-    }
-
-    .displayed-cities{
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-    width: 85%;
-    }
-
-    .city{
-      border: 1px solid #616475;
-      cursor: pointer;
-      margin-bottom: 30px;
-      padding: 20px 10px;
-      width: 100%;
+    .support{
+      display: none;
+      @media(min-width: 768px) {
+        display: block;
+      }
+      border: solid 1px #ef2c5a;
+      border-radius: 39px;
+      background-color: #ef2c5a;
       color: #fff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 18px;
+    }
+
+    .panel{
+      display: none;
+      @media(min-width: 768px) {
+        display: block;
+      }
+      margin-top: 25px;
+      border: solid 2px #000;
+      background-color: #fff;
+      border-radius: 8px;
+      color: #000;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 18px;
     }
 }`;

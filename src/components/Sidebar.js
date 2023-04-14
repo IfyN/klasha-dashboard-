@@ -11,83 +11,50 @@ import {
   Payment,
   Wire,
 } from "../components/Svgicons";
-import { StyledSidebar } from "./Sidebar.styles";
+import { StyledSidebar, StyledNavItem } from "./Sidebar.styles";
+import { Link } from "react-router-dom";
 
-function Sidebar() {
+const NavItem = ({ Icon, url, text }) => (
+  <StyledNavItem to={url} className="nav-item">
+    <Icon />
+    <span className="nav-text">{text}</span>
+  </StyledNavItem>
+);
+
+function Sidebar({ showSidebar, setShowSidebar }) {
+  if (!showSidebar) {
+    return <button onClick={() => setShowSidebar(true)}>Show panel</button>;
+  }
+
   return (
     <StyledSidebar>
       <div className="klasha-section">
-        <Klasha />
+        <div className="logo">
+          <Klasha />
+        </div>
         <div className="klasha-details">
           <h4 className="heading"> Main pages</h4>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <DashboardIcon />
-            </span>{" "}
-            <span className="nav-text">Dashboard</span>
-          </div>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <Wallet />
-            </span>{" "}
-            <span className="nav-text">Balances</span>
-          </div>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <Arrow />
-            </span>{" "}
-            <span className="nav-text">Transactions</span>
-          </div>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <Graph />
-            </span>{" "}
-            <span className="nav-text">Analytics</span>
-          </div>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <Speaker />
-            </span>{" "}
-            <span className="nav-text">Marketing</span>
-          </div>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <Exchange />
-            </span>{" "}
-            <span className="nav-text">Exchange Rates</span>
-          </div>
+          <NavItem Icon={DashboardIcon} url="/" text="Dashboard" />
+          <NavItem Icon={Wallet} url="/balances" text="Balances" />
+          <NavItem Icon={Arrow} url="/transactions" text="Transactions" />
+          <NavItem Icon={Graph} url="/analytics" text="Analytics" />
+          <NavItem Icon={Speaker} url="/marketing" text="Marketing" />
+          <NavItem Icon={Exchange} url="/exchange" text="Exchange Rates" />
+
           <h4>Accept Payments</h4>
-          <div className="nav-items">
-            <div className="nav-text">
-              <span className="nav-icon">
-                {" "}
-                <Checkout />
-              </span>{" "}
-              <span className="nav-text">Checkout</span>
-            </div>
-          </div>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <Payment />
-            </span>{" "}
-            <span className="nav-text">Payment</span>
-          </div>
+          <NavItem Icon={Checkout} url="/checkout" text="Checkout" />
+          <NavItem Icon={Payment} url="/payment" text="Payment" />
+
           <h4>Send Payments</h4>
-          <div className="nav-items">
-            <span className="nav-icon">
-              {" "}
-              <Wire />
-            </span>{" "}
-            <span className="nav-text">Wire</span>
-          </div>
+          <NavItem Icon={Wire} url="/wire" text="Wire" />
         </div>
+        <Link to ="https://klasha.com/contact" style={{textDecoration: 'none'}}>
+        <button className="support"> ? Support </button>
+        </Link>
+        <button className="panel" onClick={() => setShowSidebar(false)}>
+          {" "}
+          Hide Panel{" "}
+        </button>
       </div>
     </StyledSidebar>
   );
